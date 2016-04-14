@@ -87,9 +87,10 @@
 	function Star(posX, posY){
 	  this.posX = posX;
 	  this.posY = posY;
-	  this.distance = Math.sqrt(Math.pow(Math.abs(320 - posX), 2) +
-	                  Math.pow(Math.abs(240 - posY),2));
-	  this.dX = this.distance * .00025;
+	  this.distanceX = Math.abs(320 - posX);
+	  this.distanceY = Math.abs(240 - posY);
+	  this.dX = this.distanceX * .0025;
+	  this.dY = this.distanceY * .0025;
 	}
 
 	Star.prototype.draw = function (ctx) {
@@ -103,11 +104,12 @@
 	    this.posX -= this.dX;
 	  }
 	  if (this.posY >= 240){
-	    this.posY += this.dX;
+	    this.posY += this.dY;
 	  } else {
-	    this.posY -= this.dX;
+	    this.posY -= this.dY;
 	  }
-	  this.dX += 0.5 * this.dX;
+	  this.dX += 0.05 * this.dX;
+	  this.dY += 0.05 * this.dY;
 	};
 
 	module.exports = Star;
